@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Upload Employee Data</title>
+    <style>
+        body, h2, p, form {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #dbeafe 0%, #f0eaff 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background: #fff;
+            padding: 2.5rem 2rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.12);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h2 {
+            color: #3b82f6;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        input[type="file"] {
+            padding: 0.5rem;
+            background: #f5f5fb;
+            border: 1px solid #c7d2fe;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        button[type="submit"] {
+            background: linear-gradient(90deg, #6366f1 0%, #3b82f6 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0.9rem 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background: linear-gradient(90deg, #3b82f6 0%, #6366f1 100%);
+        }
+
+        .message, .summary {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .summary {
+            color: #1e40af;
+        }
+
+        .error-list {
+            margin-top: 0.8rem;
+            color: #dc2626;
+            font-size: 0.95rem;
+            padding-left: 1.2rem;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 1.3rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Upload Employee Excel File</h2>
+
+    <form method="post" enctype="multipart/form-data" action="/upload">
+        <input type="file" name="file" accept=".xls,.xlsx" required>
+        <button type="submit">Upload and Send Emails</button>
+    </form>
+
+    <p class="message" th:text="${message}"></p>
+
+    <div class="summary" th:if="${totalSent != null}">
+        <p>Total Emails Sent: <strong th:text="${totalSent}"></strong></p>
+        <p>Total Skipped: <strong th:text="${totalSkipped}"></strong></p>
+
+        <div th:if="${skippedIds != null and !#lists.isEmpty(skippedIds)}">
+            <p>Skipped Employee IDs:</p>
+            <ul class="error-list">
+                <li th:each="id : ${skippedIds}" th:text="${id}"></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

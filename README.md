@@ -89,20 +89,25 @@ John Doe,john.doe@example.com,Engineering,2020-01-15,Senior Engineer,,2025-08-01
 Jane Smith,jane.smith@example.com,Marketing,2021-03-10,,65000,2025-08-15,appraisal
 Peter Jones,peter.jones@example.com,HR,2019-06-20,,72000,2025-09-01,increment
 
-📂 Project Structure
-├── src
-│   ├── main
-│   │   ├── java/com/example/emailsystem
-│   │   │   ├── Application.java        # Main entry point
-│   │   │   ├── controller/UploadController.java
-│   │   │   ├── model/Employee.java
-│   │   │   └── service/
-│   │   │       ├── CSVProcessor.java   # Parse CSV
-│   │   │       ├── EmailService.java   # Send emails
-│   │   │       └── PDFGenerator.java   # Generate PDFs
-│   │   └── resources/templates/upload.html
-│   └── test/java/com/example/emailsystem/ApplicationTests.java
-└── pom.xml
+📦 your-project-name
+┣ 📂 src
+┃ ┣ 📂 main
+┃ ┃ ┣ 📂 java
+┃ ┃ ┃ ┗ 📂 com.example.project
+┃ ┃ ┃ ┃ ┣ 📜 Application.java
+┃ ┃ ┃ ┃ ┣ 📜 Controller.java
+┃ ┃ ┃ ┃ ┣ 📜 Service.java
+┃ ┃ ┃ ┃ ┗ 📜 Repository.java
+┃ ┃ ┗ 📂 resources
+┃ ┃ ┃ ┣ 📜 application.properties
+┃ ┃ ┃ ┗ 📜 templates
+┣ 📂 test
+┃ ┗ 📂 java
+┃ ┃ ┗ 📂 com.example.project
+┃ ┃ ┃ ┗ 📜 ApplicationTests.java
+┣ 📜 pom.xml
+┣ 📜 README.md
+┗ 📜 .gitignore
 
 📸 Screenshots
 

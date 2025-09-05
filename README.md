@@ -1,104 +1,119 @@
-# Spring-boot-email-automation-system
-A robust Spring Boot application that automates sending personalized emails with dynamically generated PDF attachments. It processes employee data from a CSV file, creating either promotion letters or appraisal letters based on the 'letterType' field, and then emails the relevant PDF to each employee.
+📧 Spring Boot Email Automation System
 
-Here's a GitHub description and a README file for your Spring Boot Email System project:
+Automate sending personalized emails with dynamically generated PDF attachments using Spring Boot.
 
-GitHub Description Spring Boot Email System with Dynamic PDF Generation and CSV Processing
 
-A robust Spring Boot application that automates sending personalized emails with dynamically generated PDF attachments. It processes employee data from a CSV file, creating either promotion letters or appraisal letters based on the 'letterType' field, and then emails the relevant PDF to each employee.
+✨ Features
 
-README.md Spring Boot Email System with Dynamic PDF and CSV This project is a Spring Boot application designed to automate the process of sending personalized emails with dynamically generated PDF attachments to employees. It reads employee data from a CSV file, generates either a Promotion Letter or an Appraisal Letter based on the letterType specified in the CSV, and then emails the respective PDF to each employee.
+✅ CSV Data Ingestion – Upload employee CSVs to process multiple records 📂
+✅ Dynamic PDF Generation – Create Promotion or Appraisal letters 📄
+✅ Email Automation – Sends customized emails with PDF attachments 📧
+✅ Thymeleaf UI – Simple web form for uploading CSV 🌐
+✅ Error Handling – Robust handling for file parsing & email sending ⚡
 
-Features CSV Data Ingestion: Upload an employee CSV file to process multiple email sends.
+🛠️ Tech Stack
 
-Dynamic PDF Generation: Generates personalized PDF documents (Promotion Letters or Appraisal Letters) on the fly for each employee.
+Spring Boot – Backend framework 🌱
 
-Email Automation: Sends emails with the generated PDF as an attachment using Jakarta Mail.
+Thymeleaf – Server-side template engine 🎨
 
-Thymeleaf Integration: Provides a simple and intuitive web interface for CSV file uploads.
+Apache Commons CSV – Parse CSV efficiently 📊
 
-Robust Error Handling: Includes basic error handling for file processing and email sending.
+iTextPDF – Generate dynamic PDFs 📝
 
-Technologies Used Spring Boot: Framework for building the application.
+Jakarta Mail – Email service integration ✉️
 
-Thymeleaf: Server-side Java template engine for web interfaces.
+Maven – Dependency management ⚙️
 
-Apache Commons CSV: For parsing CSV files efficiently.
+Java 17 – Core language ☕
 
-iTextPDF: For creating and manipulating PDF documents.
+🚀 Getting Started
+🔧 Prerequisites
 
-Jakarta Mail (com.sun.mail:jakarta.mail): For sending emails.
-
-Maven: Dependency management and build automation tool.
-
-Java 17: Programming language version.
-
-Getting Started These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-
-Prerequisites Java 17 or higher
+Java 17+
 
 Maven
 
-An IDE (e.g., IntelliJ IDEA, VS Code, Eclipse)
+IDE (IntelliJ, VS Code, Eclipse)
 
-A Gmail account with App Passwords enabled for sending emails. (Refer to the "Gmail App Password Setup" section below.)
+Gmail account with App Passwords enabled 🔐
 
-Installation Clone the repository:
+📥 Installation
+# Clone repository
+git clone https://github.com/your-username/emailsystem.git
+cd emailsystem
 
-Bash
+# Build project
+mvn clean install
 
-git clone https://github.com/your-username/emailsystem.git cd emailsystem Configure Gmail App Password:
+# Run application
+mvn spring-boot:run
 
-Go to your Google Account.
 
-Navigate to Security.
+📍 The app will start at: http://localhost:8080
 
-Under "How you sign in to Google," select 2-Step Verification and ensure it's ON.
+📌 Gmail App Password Setup
 
-Once 2-Step Verification is enabled, an App passwords option will appear below it. Click on it.
+Go to Google Account → Security 🔒
 
-Generate a new app password. This 16-character password is what you will use in your application, not your regular Gmail password.
+Enable 2-Step Verification ✅
 
-Update EmailService: Open src/main/java/com/example/emailsystem/service/EmailService.java and update the from email and password with your Gmail address and the 16-character App Password you generated:
+Navigate to App Passwords 🔑
 
-Java
+Generate a 16-character password
 
-@Service public class EmailService { public void sendEmailWithAttachment(Employee emp, byte[] pdfBytes) { final String from = "your_gmail_address@gmail.com"; // Your Gmail final String password = "your_16_char_app_password"; // 16-char App Password // ... rest of the code } } Build the project:
+Update EmailService.java with your Gmail & App Password
 
-Bash
+final String from = "your_gmail@gmail.com";
+final String password = "your_16_char_app_password";
 
-mvn clean install Run the application:
+🎯 Usage
 
-Bash
+Open browser → http://localhost:8080
+ 🌐
 
-mvn spring-boot:run The application will start on http://localhost:8080.
+Upload your employee CSV file 📂
 
-Usage Open your web browser and navigate to http://localhost:8080.
+Click Upload & Send Emails 🚀
 
-You will see an "Upload Employee CSV" form.
+📊 CSV Format
 
-Click "Choose File" and select your CSV file.
+Your CSV must include these headers:
 
-Click "Upload and Send Emails".
+name,email,department,doj,newDesignation,newSalary,effectiveDate,letterType
 
-CSV File Format Your CSV file should have the following headers (case-insensitive and leading/trailing spaces will be trimmed):
 
-name
+📌 Example:
 
-email
+John Doe,john.doe@example.com,Engineering,2020-01-15,Senior Engineer,,2025-08-01,promotion
+Jane Smith,jane.smith@example.com,Marketing,2021-03-10,,65000,2025-08-15,appraisal
+Peter Jones,peter.jones@example.com,HR,2019-06-20,,72000,2025-09-01,increment
 
-department
+📂 Project Structure
+├── src
+│   ├── main
+│   │   ├── java/com/example/emailsystem
+│   │   │   ├── Application.java        # Main entry point
+│   │   │   ├── controller/UploadController.java
+│   │   │   ├── model/Employee.java
+│   │   │   └── service/
+│   │   │       ├── CSVProcessor.java   # Parse CSV
+│   │   │       ├── EmailService.java   # Send emails
+│   │   │       └── PDFGenerator.java   # Generate PDFs
+│   │   └── resources/templates/upload.html
+│   └── test/java/com/example/emailsystem/ApplicationTests.java
+└── pom.xml
 
-doj (Date of Joining)
+📸 Screenshots
 
-newDesignation (Required for promotion letters)
+✨ Upload CSV Page
 
-newSalary (Required for appraisal letters)
+✨ Generated PDF Example
 
-effectiveDate
+🤝 Contributing
 
-letterType (Accepts "promotion", "appraisal", or "increment". "increment" will be normalized to "appraisal".)
+Pull requests are welcome! 🚀 If you’d like to contribute, fork the repo & submit a PR.
 
-Example CSV: Code snippet
+📜 License
 
-name,email,department,doj,newDesignation,newSalary,effectiveDate,letterType John Doe,john.doe@example.com,Engineering,2020-01-15,Senior Engineer,,2025-08-01,promotion Jane Smith,jane.smith@example.com,Marketing,2021-03-10,,65000,2025-08-15,appraisal Peter Jones,peter.jones@example.com,HR,2019-06-20,,72000,2025-09-01,increment Project Structure ├── src │ ├── main │ │ ├── java │ │ │ └── com │ │ │ └── example │ │ │ └── emailsystem │ │ │ ├── Application.java # Main Spring Boot application entry point │ │ │ ├── controller │ │ │ │ └── UploadController.java # Handles web requests (upload, home page) │ │ │ ├── model │ │ │ │ └── Employee.java # Employee data model │ │ │ └── service │ │ │ ├── CSVProcessor.java # Utility for parsing CSV files │ │ │ ├── EmailService.java # Handles sending emails │ │ │ └── PDFGenerator.java # Utility for generating PDF documents │ │ └── resources │ │ ├── static # Static assets (CSS, JS, images - though not used much here) │ │ └── templates │ │ └── upload.html # Thymeleaf template for the upload form │ └── test │ └── java │ └── com │ └── example │ └── emailsystem │ └── ApplicationTests.java # Spring Boot tests └── pom.xml # Maven project object mod
+📝 This project is licensed under the MIT License.
